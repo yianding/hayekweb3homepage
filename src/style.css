@@ -1,0 +1,28 @@
+/* 覆盖样式变量，定制Vant主题颜色 */
+
+:root:root {
+  --van-nav-bar-background: #0F0F0F;
+  --van-nav-bar-text-color: #FFFFFF;
+  --van-nav-bar-title-text-color: #FFFFFF;
+  --van-nav-bar-icon-color: #FFFFFF;
+
+  --van-tabs-nav-background: #0F0F0F;
+  --van-tab-text-color: #FFFFFF;
+  --van-tab-active-text-color: #FFFFFF;
+
+  --van-grid-item-content-padding: var(--van-padding-base) var(--van-padding-base);
+  --van-cell-group-title-padding: var(--van-padding-sm) var(--van-padding-md) var(--van-padding-xs) var(--van-padding-md);
+  --van-cell-group-inset-title-padding: var(--van-padding-sm) var(--van-padding-md) var(--van-padding-xs) var(--van-padding-md);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#app {
+  margin: 0 auto;
+  font-size: 16px;
+  height: calc(100vh);
+}
