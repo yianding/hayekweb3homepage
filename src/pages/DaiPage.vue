@@ -53,16 +53,16 @@ const formData2 = reactive({ target: '', amount: '', balance: '0.00000000' })
 
 const onSubmit = async () => {
   let result = false;
-  if(ttype === 1){
+  if(ttype.value === 1){
     result = await hayekTransfer('0x9989E22739753b10A885C2720B26C3344b23DFeA', formData1.amount, '0x81b9aae4ac06040F8b8E140153530F09023A5e2E')
-  } else if(ttype === 2){
+  } else if(ttype.value === 2){
     result = await hayekTransfer(formData1.target, formData1.amount, '0x81b9aae4ac06040F8b8E140153530F09023A5e2E')
-  } else if(ttype === 3){
+  } else if(ttype.value === 3){
     result = await polygonTransfer('0xaB895ceD581B86e8f9783AB17f147217E015332D', formData2.amount, '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063')
-  } else if(ttype === 4){
+  } else if(ttype.value === 4){
     result = await polygonTransfer(formData2.target, formData2.amount, '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063')
   }
-  showToast(result ? '交易已經提交上鏈，請等待幾十秒種重繪餘額。' : '轉帳失敗啦！');
+  showToast(result ? '交易已經提交上鏈，請等待幾十秒钟重繪餘額。' : '轉帳失敗啦！');
 };
 
 onMounted(async() => {

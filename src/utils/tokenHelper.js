@@ -70,7 +70,7 @@ const hayekTransfer = async(target, amount, addrErc20) =>{
   _ERC20transfer(provider, target, amount, addrErc20, 18);
 }
 
-const polygonTransfer = async() =>{
+const polygonTransfer = async(target, amount, addrErc20) =>{
   const provider = new ethers.providers.Web3Provider(window.polygon);
   _ERC20transfer(provider, target, amount, addrErc20, 18);
 }
