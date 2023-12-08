@@ -38,7 +38,7 @@ const connectWallet = async () => {
 onMounted(async() => {
   console.log('App-onMounted---------begin');
 
-  appData.daiToken = import.meta.env.VITE_TOKEN_ADDRESS;
+  appData.daiToken = import.meta.env.VITE_DAI_ADDRESS;
 
   await connectWallet();
   console.log('App-onMounted---------end', appData.daiToken);

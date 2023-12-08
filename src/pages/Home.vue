@@ -6,8 +6,8 @@
       <van-swipe-item><img class="swipe-img" :src="swipe3" /></van-swipe-item>
     </van-swipe>
     <van-cell-group title="網絡狀態">
-      <van-cell title="區塊號" :value="pageData.block_no" />
-      <van-cell title="IPFS結點">
+      <van-cell title="當前區塊號" :value="pageData.block_no" />
+      <van-cell title="IPFS結點數">
         <template #value>{{ pageData.ipfs_nodes }} / {{ pageData.gateway_nodes }} / {{ pageData.pin_nodes }}</template>
       </van-cell>
     </van-cell-group>
@@ -22,6 +22,7 @@
       </van-cell>
       <van-cell title="HYK" :value="pageData.balance" clickable @click="dlgTransfer.showDialog(total)" is-link />
       <van-cell title="DAI" :value="pageData.daiBalance" is-link to="/daipage" />
+      <van-cell title="Matic" :value="pageData.maticBalance" is-link to="/maticpage" />
     </van-cell-group>
     <van-cell-group title="快速導航">
     <van-grid :column-num="3" :gutter="0">
@@ -33,7 +34,7 @@
       <van-grid-item icon="video-o" text="短視頻" icon-color="#0bbd8b" url="web3://hayek.web3/web3tube/" />
       <van-grid-item icon="exchange" text="Uniswap兌換" icon-color="#0bbd8b" url="http://127.0.0.1:8080/ipfs/QmdbcZArpWHsjRpaNwYK7MagXzC6Wap58AHuBvvELfBogK/dapp/uniswapv2/" />
       <van-grid-item icon="cash-o" text="DOTC交易" icon-color="#0bbd8b" url="http://127.0.0.1:8080/ipfs/QmdbcZArpWHsjRpaNwYK7MagXzC6Wap58AHuBvvELfBogK/dapp/dotc/" />
-      <van-grid-item icon="info-o" text="系統資訊" icon-color="#0bbd8b" url="./system/" />
+      <van-grid-item icon="info-o" text="系統資訊" icon-color="#0bbd8b" url="web3://hayek.web3/system/" />
     </van-grid>
   </van-cell-group>
   </div>
@@ -45,7 +46,7 @@ import { useRouter } from 'vue-router';
 import { useAppData } from '@/store/appData';
 import { useSemm } from '@/utils/useSemm';
 import { ethers } from 'ethers';
-import { balanceOf, balanceOfDAI, blockNumber } from '@/utils/tokenHelper';
+import { balanceOf, balanceOfDAI, balanceOfMatic, blockNumber } from '@/utils/tokenHelper';
 import DialogTransfer from '../components/Dialog-Transfer.vue'
 import swipe1 from "../assets/swipe/swipe1.jpg";
 import swipe2 from "../assets/swipe/swipe2.jpg";
@@ -63,7 +64,8 @@ const pageData = reactive({
   gateway_nodes: '0',
   pin_nodes: '0',
   balance: '0.00000000',
-  daiBalance: '0.00000000'
+  daiBalance: '0.00000000',
+  maticBalance: '0.00000000'
 })
 let timerId = 0;
 
@@ -76,6 +78,11 @@ const loadBalance = () => {
 
   balanceOfDAI(appData.wallet).then(value =>{
     pageData.daiBalance = (+value).toFixed(8);
+    console.log('value=', value)
+  })
+
+  balanceOfMatic(appData.wallet).then(value =>{
+    pageData.maticBalance = (+value).toFixed(8);
     console.log('value=', value)
   })
 
@@ -153,4 +160,9 @@ onBeforeUnmount(async () =>{
   height: 100%;
   object-fit: contain;
 }
+:deep(.wallet-cell .van-cell__value) {
+  flex: 3;
+}
+
+:deep(.van-cell){ padding-top: 6px; padding-bottom: 6px; }
 </style>

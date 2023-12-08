@@ -41,7 +41,7 @@ const querySync = async() =>{
 onMounted(async() => {
   console.log('Syncing-onMounted------begin');
  
-  // setTimeout(querySync, 100);
+  setTimeout(querySync, 500);
   timerId = setInterval(querySync, 5000);
   
   console.log('Syncing-onMounted------end');

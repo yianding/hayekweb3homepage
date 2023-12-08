@@ -13,6 +13,7 @@ const router = createRouter({
     { path: '/recharge', name: 'recharge', component: () => import('../pages/Recharge.vue') },
     { path: '/agentpage', name: 'agentpage', component: () => import('../pages/AgentPage.vue') },
     { path: '/daipage', name: 'daipage', component: () => import('../pages/DaiPage.vue') },
+    { path: '/maticpage', name: 'maticpage', component: () => import('../pages/MaticPage.vue') },
     { path: '/syncing', name: 'syncing', component: () => import('../pages/SyncPage.vue') },
   ]
 })
