@@ -6,6 +6,7 @@ import { onMounted } from 'vue'
 import { useAppData } from '@/store/appData';
 import { ethers } from 'ethers';
 import { showToast } from 'vant';
+import eruda from 'eruda'
 
 const appData = useAppData();
 
@@ -42,5 +43,8 @@ onMounted(async() => {
 
   await connectWallet();
   console.log('App-onMounted---------end', appData.daiToken);
+
+  // 开启调试器
+  eruda.init()
 })
 </script>
