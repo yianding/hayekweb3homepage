@@ -16,7 +16,7 @@ const balanceOfDAI = async (wallet) => {
   const provider = new ethers.providers.Web3Provider(window.hayek || window.ethereum);
   const smmAbi = ["function balanceOf(address account) external view returns (uint256)"];
 
-  console.log('balanceOfDAI: ', daiAddress);
+
   const contract = new ethers.Contract(daiAddress, smmAbi, provider);
   const result = await contract.balanceOf(wallet);
   let balance = ethers.utils.formatEther(result);
@@ -61,7 +61,9 @@ const blockNumber = async () =>{
 
 // Hayek链上【Hayek】币转账
 const transferHyk = async(address, amount) =>{
+  if(address==""){alert("收款地址不能为空")}
   const provider = new ethers.providers.Web3Provider(window.hayek || window.ethereum);
+  await provider.send('eth_requestAccounts', []);
   const signer = provider.getSigner();  
 
   try{
@@ -77,7 +79,9 @@ const transferHyk = async(address, amount) =>{
 
 // Polygon链上【Matic】币转账
 const transferMatic = async(address, amount) =>{
+  if(address==""){alert("收款地址不能为空")}
   const provider = new ethers.providers.Web3Provider(window.polygon);
+  await provider.send('eth_requestAccounts', []);
   const signer = provider.getSigner();
 
   try{
@@ -86,7 +90,7 @@ const transferMatic = async(address, amount) =>{
     await tx.wait();
     return true;
   } catch (error){
-    console.log(error);
+   // console.log(error);
     return false;
   }
 }
@@ -94,14 +98,21 @@ const transferMatic = async(address, amount) =>{
 const _ERC20transfer = async(provider, raddress, amount, ERC20address, deci)=> {
   const ERC20ABI = ["function transfer(address to, uint256 amount) external returns (bool)"];
   try {
+    if(raddress==""){alert("收款地址不能为空")}
+    await provider.send('eth_requestAccounts', []);
     const signer = provider.getSigner()
+   
     const contract = new ethers.Contract(ERC20address, ERC20ABI, provider);
-    const daiWithSigner = contract.connect(signer);     
-    const daiamount = ethers.utils.parseUnits(amount, deci);
+    
+    const daiWithSigner = contract.connect(signer);    
+ 
+    const daiamount = ethers.utils.parseUnits(""+amount, deci);
+
     const tx = await daiWithSigner.transfer(raddress, daiamount, { gasLimit: 80000 });
+   
     return true;
   } catch (error){
-    console.log(error);
+  
     return false;
   }
 }
@@ -109,13 +120,14 @@ const _ERC20transfer = async(provider, raddress, amount, ERC20address, deci)=> {
 // Hayek链上【ERC20】币转账
 const hayekTransfer = async(target, amount, addrErc20) =>{
   const provider = new ethers.providers.Web3Provider(window.hayek || window.ethereum);
-  _ERC20transfer(provider, target, amount, addrErc20, 18);
+  return _ERC20transfer(provider, target, amount, addrErc20, 18);
 }
 
 // Polygon链上【ERC20】币转账
 const polygonTransfer = async(target, amount, addrErc20) =>{
   const provider = new ethers.providers.Web3Provider(window.polygon);
-  _ERC20transfer(provider, target, amount, addrErc20, 18);
+ 
+ return _ERC20transfer(provider, target, amount, addrErc20, 18);
 }
 
 export { balanceOf, balanceOfDAI, balanceOfMatic, balanceOfDaiOnPolygon, balanceOfMaticOnPolygon, blockNumber, transferHyk, transferMatic, hayekTransfer, polygonTransfer }

@@ -8,7 +8,7 @@
             <img width="16" height="16" style="margin-top: 3px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAhpJREFUSEu1VTFS40AQ7JEcQElXxRNEdiEhGeYlmJDC9wZ8bzhThDYvscgICclQeDlSHYG1czUrjbystLYI2MDl2lpNz3TP9BC++dCh+P8ejjJjJldgzhiUyXsCF0x4YkPFj19lvi9GEEAC1/VkRcC0CcCF/QUVBM7QggG8NkyPIaBBgOo+vQNjYYMSraNo+3h882EB9DiVzSwYYZHclr/9anoA5TLdNFnzOplX1+MptAn1vvkE0GUeyGYfWOjbDuD9TzqNCBsG8nReXkqw8j6ZgenKDawCx1Gd+7QpiGFcqiYdgFKTzMvenYB+BrEUWn1c3q0udbyRRtAku2DVMmUmvk5vq7UGE1D5r4/7AmPhiytVE9NKq7AAehnF21Mtuw1+1gZ9CfD/k4ATEF6Y8RHHW9sUpp68KbAFqJbJCqCZ0qMzAGAvABGOmHFORAUzFwIgCVbL5A1ALl3YAciU+lSEKHKrGXrj3jUUBbgeA+Bmq8CDFQCYJvPq1BP4kAbyXKzkFcDfIEW+8mM1aDU6IcKzitxosOtIS1HTvzvlx7SpGmGvtds21Y70hooznyZxThmc/qBZ3+4ZnK9JB9BV4RhWyCpAVAw5rLrBoFXYeVCb/g6z61rsiyCt/9zJoLpGqfFGLRxj8ORvrN3CkT0wrEdzHThuZs0Td2XqGpUVilz7fyjUqKVfm3hKjAt36YvQQyvSBzkIEKpw7P1/KzyiKH8q7O8AAAAASUVORK5CYII=" />
           </template>
         </van-cell>
-        <van-field v-model="formData1.target" name="targetAddr" label="收款地址" label-align="top" :rules="[{ required: true, message: '請輸入收款地址' }]" />
+        <van-field v-model="formData1.target" name="targetAddr" label="收款地址" label-align="top" :rules="[{ required: false, message: '請輸入收款地址' }]" />
         <van-field v-model.number="formData1.amount" name="transferAmount" label="轉帳金額" :rules="[{ required: true, message: '請輸入轉帳金額' }, { validator: v => v>0, message: '轉帳金額應大於 0 ！', trigger: 'onSubmit' }]" />
       </van-cell-group>
       <div class="footer">
@@ -24,7 +24,7 @@
             <img width="16" height="16" style="margin-top: 3px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAhpJREFUSEu1VTFS40AQ7JEcQElXxRNEdiEhGeYlmJDC9wZ8bzhThDYvscgICclQeDlSHYG1czUrjbystLYI2MDl2lpNz3TP9BC++dCh+P8ejjJjJldgzhiUyXsCF0x4YkPFj19lvi9GEEAC1/VkRcC0CcCF/QUVBM7QggG8NkyPIaBBgOo+vQNjYYMSraNo+3h882EB9DiVzSwYYZHclr/9anoA5TLdNFnzOplX1+MptAn1vvkE0GUeyGYfWOjbDuD9TzqNCBsG8nReXkqw8j6ZgenKDawCx1Gd+7QpiGFcqiYdgFKTzMvenYB+BrEUWn1c3q0udbyRRtAku2DVMmUmvk5vq7UGE1D5r4/7AmPhiytVE9NKq7AAehnF21Mtuw1+1gZ9CfD/k4ATEF6Y8RHHW9sUpp68KbAFqJbJCqCZ0qMzAGAvABGOmHFORAUzFwIgCVbL5A1ALl3YAciU+lSEKHKrGXrj3jUUBbgeA+Bmq8CDFQCYJvPq1BP4kAbyXKzkFcDfIEW+8mM1aDU6IcKzitxosOtIS1HTvzvlx7SpGmGvtds21Y70hooznyZxThmc/qBZ3+4ZnK9JB9BV4RhWyCpAVAw5rLrBoFXYeVCb/g6z61rsiyCt/9zJoLpGqfFGLRxj8ORvrN3CkT0wrEdzHThuZs0Td2XqGpUVilz7fyjUqKVfm3hKjAt36YvQQyvSBzkIEKpw7P1/KzyiKH8q7O8AAAAASUVORK5CYII=" />
           </template>
         </van-cell>
-        <van-field v-model="formData2.target" name="targetAddr" label="收款地址" label-align="top" :rules="[{ required: true, message: '請輸入收款地址' }]" />
+        <van-field v-model="formData2.target" name="targetAddr" label="收款地址" label-align="top" :rules="[{ required: false, message: '請輸入收款地址' }]" />
       <van-field v-model.number="formData2.amount" name="transferAmount" label="轉帳金額" :rules="[{ required: true, message: '請輸入轉帳金額' }, { validator: v => v>0, message: '轉帳金額應大於 0 ！', trigger: 'onSubmit' }]" />
       </van-cell-group>
       <div class="footer">
@@ -55,14 +55,21 @@ const onSubmit = async () => {
   let result = false;
   if(ttype.value === 1){
     result = await hayekTransfer('0x9989E22739753b10A885C2720B26C3344b23DFeA', formData1.amount, '0x81b9aae4ac06040F8b8E140153530F09023A5e2E')
+    showToast(result ? '已经提交到Hayek链，基于安全原因，从哈耶克链跨链转账到其他链，需要等待14天，才可收到DAI币' : '轉帳失敗啦！');
+ 
   } else if(ttype.value === 2){
     result = await hayekTransfer(formData1.target, formData1.amount, '0x81b9aae4ac06040F8b8E140153530F09023A5e2E')
+    showToast(result ? '已经提交到Polygon链，一般只需要几分钟，收款地址即可收到DAI币' : '轉帳失敗啦！');
+ 
   } else if(ttype.value === 3){
     result = await polygonTransfer('0xaB895ceD581B86e8f9783AB17f147217E015332D', formData2.amount, '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063')
+    showToast(result ? '已经提交到Polygon链，请等待半小时，即可在哈耶克链上查到您的DAI币。' : '轉帳失敗啦！');
   } else if(ttype.value === 4){
     result = await polygonTransfer(formData2.target, formData2.amount, '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063')
+    showToast(result ? '已经提交到Polygon链，一般只需要几分钟，收款地址即可收到DAI币' : '轉帳失敗啦！');
+ 
   }
-  showToast(result ? '交易已經提交上鏈，請等待幾十秒種重繪餘額。' : '轉帳失敗啦！');
+ 
 };
 
 onMounted(async() => {
