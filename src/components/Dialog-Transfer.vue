@@ -2,8 +2,8 @@
   <van-dialog title="轉帳操作" style="background-color: #f7f7f7;" v-model:show="showMe" :show-confirm-button="false">
     <van-form label-width="60" @submit="onSubmit">
       <van-cell-group inset>
-        <van-field v-model="target" name="targetAddr" label="轉帳地址" type="textarea" placeholder="輸入轉帳目標地址" rows="2" :rules="[{ required: true, message: '請輸入轉帳目標地址' }]" />
-        <van-field v-model.number="amount" name="transferAmount" label="轉帳金額" placeholder="輸入轉帳金額" :rules="[{ required: true, message: '請輸入轉帳金額' }, { validator: v => v>0, message: '轉帳金額應大於 0 ！', trigger: 'onSubmit' }]" />
+        <van-field v-model="target" name="targetAddr" label="收款地址" type="textarea" placeholder="輸入轉帳目標地址" rows="2" :rules="[{ required: true, message: '請輸入轉帳目標地址' }]" />
+        <van-field v-model.number="amount" name="transferAmount" label="转出金額" placeholder="輸入轉帳金額" :rules="[{ required: true, message: '請輸入轉帳金額' }, { validator: v => v>0, message: '轉帳金額應大於 0 ！', trigger: 'onSubmit' }]" />
       </van-cell-group>
       <div class="footer">
         <van-button type="primary" native-type="submit" size="small"     

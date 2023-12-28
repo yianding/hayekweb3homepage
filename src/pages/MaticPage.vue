@@ -12,7 +12,7 @@
         <van-field v-model.number="formData1.amount" name="transferAmount" label="轉帳金額" :rules="[{ required: true, message: '請輸入轉帳金額' }, { validator: v => v>0, message: '轉帳金額應大於 0 ！', trigger: 'onSubmit' }]" />
       </van-cell-group>
       <div class="footer">
-        <van-button type="danger" native-type="submit" size="small" @click="ttype=1" disabled>轉帳到Polygon</van-button>
+        <!-- <van-button type="danger" native-type="submit" size="small" @click="ttype=1" disabled>轉帳到Polygon</van-button> -->
         <div style="width: 20px;"></div>
         <van-button type="primary" native-type="submit" size="small" @click="ttype=2" disabled>Hayek鏈轉帳</van-button>
       </div>
@@ -28,7 +28,7 @@
       <van-field v-model.number="formData2.amount" name="transferAmount" label="轉帳金額" :rules="[{ required: true, message: '請輸入轉帳金額' }, { validator: v => v>0, message: '轉帳金額應大於 0 ！', trigger: 'onSubmit' }]" />
       </van-cell-group>
       <div class="footer">
-        <van-button type="danger" native-type="submit" size="small" @click="ttype=3">轉帳到Hayek</van-button>
+        <!-- <van-button type="danger" native-type="submit" size="small" @click="ttype=3">轉帳到Hayek</van-button> -->
         <div style="width: 20px;"></div>
         <van-button type="primary" native-type="submit" size="small" @click="ttype=4">Polygon鏈轉帳</van-button>
       </div>

@@ -1,0 +1,1542 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Web3.0门户</title>
+</head>
+<style>
+  .collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  .active,
+  .collapsible:hover {
+    background-color: #ccc;
+  }
+
+  /* Style the collapsible content. Note: hidden by default */
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+</style>
+
+<body>
+  <div hidden="hidden"><textarea id="copytextarea"></textarea></div>
+  <div width="100%" id="screen">
+    <table border="0" id="download" align="center" width="100%">
+      <tr>
+
+        <td align="center" bgcolor="#00FFFF">
+          <a href="down.html">
+            <font size="6px">下载安装Hayek</font>
+          </a>
+        </td>
+      </tr>
+      <hr />
+    </table>
+    <font id="block" size=1>正在取得区块号 </font>
+    </td>
+
+    <hr />
+
+
+    <table border="0">
+      <tr>
+        <td width="8%"><img src="images/favicon.ico" width="23"></img></td>
+
+        <td align="left"><text>IPFS</text></td>
+        <td width="100%" align="right"><text id="ipfsnodes" align="right">N/A</text></td>
+      </tr>
+    </table>
+    <hr />
+    <button type="button" class="collapsible">我的钱包</button>
+    <div class="content">
+      <div onclick="copyAddress(account)">
+        <table border="0">
+          <tr>
+            <td width="1%"></td>
+            <td width=38%" align="left">地址:</td>
+            <td align="right">
+              <font id="account" size=1>
+              </font>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <hr />
+      <div
+        style="border: 2px solid rgb(229, 229, 252); border-radius: 1px 1px;background-color: rgb(229, 229, 252);padding: 0px;">
+
+        <table>
+
+          Hayek链上资产
+
+        </table>
+
+        <hr />
+
+        <div
+          style="border: 2px solid rgb(3, 1, 24); border-radius: 15px 15px;background-color: rgb(232, 232, 238);padding: 15px;">
+
+          <table border="0">
+            <tr>
+              <td width="8%"><img src="0xf3DD11F7d8fA791c2Da46a5D26634592E417Af6C.png" width="23"></img></td>
+
+              <td align="left"><text>HYK</text></td>
+              <td width="100%" align="right"><text id="balance" align="right">N/A</text></td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+              <td width="0%"></td>
+
+              <td align="left" width="32%" style="font-size: 14px;">收款地址</td>
+
+              <td width="100%" align="right">
+                <input id="address1" align="right"></input>
+              </td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+              <td width="0%"></td>
+
+              <td align="left" width="23%"><text style="font-size: 14px;">金额</text></td>
+
+              <td width="100%" align="right">
+                <input align="right" id="balance1"></input>
+              </td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+
+              <td align="left"></td>
+
+              <td width="100%" align="right">
+                <button align="right" width="100%"
+                  onclick="transfer(hayekprovider,document.getElementById('address1').value,document.getElementById('balance1').value)">转账</button>
+              </td>
+
+            </tr>
+          </table>
+
+        </div>
+        <hr />
+        <div
+          style="border: 2px solid rgb(3, 1, 24); border-radius: 15px 15px;background-color: rgb(232, 232, 238);padding: 15px;">
+          <table border="0">
+            <tr>
+              <td width="8%"><img src="matic.png" width="23"></img></td>
+
+              <td align="left"><text>MATIC@hayek</text></td>
+              <td width="100%" align="right"><text id="matichayek" align="right">N/A</text></td>
+            </tr>
+          </table>
+
+          <table border="0">
+            <tr>
+              <td width="0%"></td>
+
+              <td align="left" width="32%" style="font-size: 14px;">收款地址</td>
+
+              <td width="100%" align="right">
+                <input id="address2" align="right" ></input>
+              </td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+              <td width="0%"></img></td>
+
+              <td align="left" width="23%"><text style="font-size: 14px;">金额</text></td>
+
+              <td width="100%" align="right">
+                <input id="balance2" align="right"></input>
+              </td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+
+              <td align="left"></td>
+              <td width="50%" align="right"><button align="right" onclick="alert('暂时不可转')">跨链转账到Polygon</button>
+              </td>
+              <td width="50%" align="right">
+                <button align="right" width="100%" onclick="alert('暂时不可转账')">转账</button>
+              </td>
+
+            </tr>
+          </table>
+        </div>
+        <hr />
+        <div
+          style="border: 2px solid rgb(3, 1, 24); border-radius: 15px 15px;background-color: rgb(232, 232, 238);padding: 15px;">
+          <table border="0">
+            <tr>
+              <td width="8%"><img src="dai.png" width="23"></img></td>
+
+              <td align="left"><text>DAI@hayek</text></td>
+              <td width="100%" align="right"><text id="daihayek" align="right">N/A</text></td>
+            </tr>
+          </table>
+
+          <table border="0">
+            <tr>
+              <td width="0%"></td>
+
+              <td align="left" width="32%" style="font-size: 14px;">收款地址</td>
+
+              <td width="100%" align="right">
+                <input id="addressofdaionhayek" align="right"></input>
+              </td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+              <td width="0%"></img></td>
+
+              <td align="left" width="23%" ><text style="font-size: 14px;">金额</text></td>
+
+              <td width="100%" align="right">
+                <input id="balanceofdaionhayek" align="right"></input>
+              </td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+
+              <td align="left"></td>
+              <td width="50%" align="right"><button align="right"
+                  onclick="ERC20transfer(hayekprovider,'0x9989E22739753b10A885C2720B26C3344b23DFeA',document.getElementById('balanceofdaionhayek').value,'0x81b9aae4ac06040F8b8E140153530F09023A5e2E',18)">跨链转账到Polygon</button>
+              </td>
+              <td width="50%" align="right">
+                <button align="right" width="100%"
+                  onclick="ERC20transfer(hayekprovider,document.getElementById('addressofdaionhayek').value,document.getElementById('balanceofdaionhayek').value,'0x81b9aae4ac06040F8b8E140153530F09023A5e2E',18)">转账</button>
+              </td>
+
+            </tr>
+          </table>
+        </div>
+        <hr />
+        <div
+          style="border: 2px solid rgb(3, 1, 24); border-radius: 15px 15px;background-color: rgb(232, 232, 238);padding: 15px;">
+          <table border="0">
+            <tr>
+              <td width="8%"><img src="usdt.png" width="23"></img></td>
+
+              <td align="left"><text>USDT@hayek</text></td>
+              <td width="100%" align="right"><text id="usdthayek" align="right">N/A</text></td>
+            </tr>
+          </table>
+
+          <table border="0">
+            <tr>
+              <td width="0%"></td>
+
+              <td align="left" width="32%" style="font-size: 14px;">收款地址</td>
+
+              <td width="100%" align="right">
+                <input id="addressofusdtonhayek" align="right"></input>
+              </td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+              <td width="0%"></img></td>
+
+              <td align="left" width="23%"><text style="font-size: 14px;">金额</text></td>
+
+              <td width="100%" align="right">
+                <input id="balanceofusdtonhayek" align="right"></input>
+              </td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+
+              <td align="left"></td>
+              <td width="50%" align="right"><button align="right"
+                  onclick="ERC20transfer(hayekprovider,'0x9989E22739753b10A885C2720B26C3344b23DFeA',document.getElementById('balanceofusdtonhayek').value,'0x31F0929be289073B60F0c4248303EdcE6a7E278B',6)">跨链转账到Polygon</button>
+              </td>
+              <td width="50%" align="right">
+                <button align="right" width="100%"
+                  onclick="ERC20transfer(hayekprovider,document.getElementById('addressofusdtonhayek').value,document.getElementById('balanceofusdtonhayek').value,'0x31F0929be289073B60F0c4248303EdcE6a7E278B',6)">转账</button>
+              </td>
+
+            </tr>
+          </table>
+        </div>
+      </div>
+      <hr />
+      <div
+        style="border: 2px solid rgb(134, 134, 248); border-radius: 1px 1px;background-color: rgb(156, 156, 238);padding: 0px;">
+
+        <table>
+          Polygon链上资产
+        </table>
+        <hr />
+        <div
+          style="border: 2px solid rgb(3, 1, 24); border-radius: 15px 15px;background-color: rgb(232, 232, 238);padding: 5px;">
+          <table border="0">
+            <tr>
+              <td width="8%"><img src="matic.png" width="23"></img></td>
+
+              <td align="left"><text>MATIC</text></td>
+              <td width="100%" align="right"><text id="maticbalance" align="right">N/A</text></td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+              <td width="0%"></td>
+
+              <td align="left" width="32%" style="font-size: 14px;">收款地址</td>
+
+              <td width="100%" align="right">
+                <input id="address3" align="right"></input>
+              </td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+              <td width="0%"></td>
+
+              <td align="left" width="23%"><text style="font-size: 14px;">金额</text></td>
+
+              <td width="100%" align="right">
+                <input id="balance3" align="right"></input>
+              </td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+
+              <td align="left"></td>
+
+              <td width="50%" align="right">
+                <button align="right" width="100%"
+                  onclick="transfer(polygonprovider,document.getElementById('address3').value,document.getElementById('balance3').value)">转账</button>
+              </td>
+
+              <td width="50%" align="right"><button align="right"
+                  onclick="transfer(polygonprovider,'0xdede4493072d8d4998506f167b8bcb1bf8453975',getElementById('balance3').value)">跨链转账到Hayek</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <hr />
+        <div
+          style="border: 2px solid rgb(3, 1, 24); border-radius: 15px 15px;background-color: rgb(232, 232, 238);padding: 15px;">
+          <table border="0">
+            <tr>
+              <td width="8%"><img src="dai.png" width="23"></img></td>
+
+              <td align="left"><text>DAI@polygon</text></td>
+              <td width="100%" align="right"><text id="DAIpolygon" align="right">N/A</text></td>
+            </tr>
+          </table>
+
+          <table border="0">
+            <tr>
+              <td width="0%"></td>
+
+              <td align="left" width="32%" style="font-size: 14px;">收款地址</td>
+
+              <td width="100%" align="right">
+                <input id="addressfordai" align="right"></input>
+              </td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+              <td width="0%"></img></td>
+
+              <td align="left" width="23%" style="font-size: 14px;"><text>金额</text></td>
+
+              <td width="100%" align="right">
+                <input id="balancefordai" align="right"></input>
+              </td>
+            </tr>
+          </table>
+          <table border="0">
+            <tr>
+
+              <td align="left"></td>
+              <td width="50%" align="right"><button align="right"
+                  onclick="ERC20transfer(polygonprovider,'0xaB895ceD581B86e8f9783AB17f147217E015332D',document.getElementById('balancefordai').value,'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',18)">跨链转账到Hayek链</button>
+              </td>
+              <td width="50%" align="right">
+                <button align="right" width="100%"
+                  onclick="ERC20transfer(polygonprovider,document.getElementById('addressfordai').value,document.getElementById('balancefordai').value,'0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',18)">转账</button>
+              </td>
+
+            </tr>
+          </table>
+        </div>
+        <hr />
+        <div
+        style="border: 2px solid rgb(3, 1, 24); border-radius: 15px 15px;background-color: rgb(232, 232, 238);padding: 15px;">
+        <table border="0">
+          <tr>
+            <td width="8%"><img src="usdt.png" width="23"></img></td>
+
+            <td align="left"><text>USDT@polygon</text></td>
+            <td width="100%" align="right"><text id="USDTpolygon" align="right">N/A</text></td>
+          </tr>
+        </table>
+
+        <table border="0">
+          <tr>
+            <td width="0%"></td>
+
+            <td align="left" width="32%" style="font-size: 14px;">收款地址</td>
+
+            <td width="100%" align="right">
+              <input id="addressforusdt" align="right"></input>
+            </td>
+          </tr>
+        </table>
+        <table border="0">
+          <tr>
+            <td width="0%"></img></td>
+
+            <td align="left" width="23%" style="font-size: 14px;"><text>金额</text></td>
+
+            <td width="100%" align="right">
+              <input id="balanceforusdt" align="right"></input>
+            </td>
+          </tr>
+        </table>
+        <table border="0">
+          <tr>
+
+            <td align="left"></td>
+            <td width="50%" align="right"><button align="right"
+                onclick="ERC20transfer(polygonprovider,'0xaB895ceD581B86e8f9783AB17f147217E015332D',document.getElementById('balanceforusdt').value,'0xc2132D05D31c914a87C6611C10748AEb04B58e8F',6)">跨链转账到Hayek链</button>
+            </td>
+            <td width="50%" align="right">
+              <button align="right" width="100%"
+                onclick="ERC20transfer(polygonprovider,document.getElementById('addressforusdt').value,document.getElementById('balanceforusdt').value,'0xc2132D05D31c914a87C6611C10748AEb04B58e8F',6)">转账</button>
+            </td>
+
+          </tr>
+        </table>
+      </div>
+
+      <hr />
+      <div
+      style="border: 2px solid rgb(203, 199, 243); border-radius: 15px 15px;background-color: rgb(232, 232, 238);padding: 15px;">
+      <h3>钱包基础知识: </h3><br>
+        您在此钱包里，可以看到有两个模块,分别是Hayek链上资产与Polygon链上资产，我们还会增加其他比如以太坊，币安链资产。这些区块链，都是类以太坊区块链。他们所使用的钱包地址与虚拟机的标准都是一样的。
+        这些链上的Dapp应用，都可以很容易的迁移到其他链上运行。并且，这些链上的虚拟币，都可以通过跨链桥相互转移。比如，我们可以将Polygon链上的USDT币转移到Hayek链上来。反之亦然。所以，您会看到USDT资产下方有一个跨链转账的按钮。
+        Polygon链是我们优先接入的区块链，原因是相比于以太坊，polygon链的每次操作的Gas费非常低。（目前，大约每一笔操作的费用在1美分以下。），而以太坊的Gas费太高，一般价值在十几美元到几十美元不等，取决于该笔操作的指令复杂程度。
+        <br>
+        <h3>为什么要跨链交易？</h3><br>
+        跨链交易可以使得您的资产在不同的区块链之间转移。比如，您可以从币安交易所，或者美国的coinbase这类中心化交易所，购买USDT，提现到polygon链或者以太坊链，然后，通过跨链转账，转到Hayek链上来。也可以把您在Hayek链上的USDT,DAI
+        等加密货币转移到其他链，充值到币安或者其他交易所兑换成人民币，美元，欧元等世界各国货币。<br>
+        <h3>如何购买USDT并转移到Hayek链？</h3><br>
+        首先，请准备好您的身份证，护照，在浏览器中打开 <a href="https://www.binance.com/zh-CN">https://www.binance.com/zh-CN</a> 网站(中国大陆用户需要翻墙访问)，下载安装币安交易所的APP，注册并通过认证，您就可以用微信，支付宝，银行卡等方式购买USDT，然后，您在币安的APP里，将USDT提现您hayek的钱包地址。
+        (本页面上方就显示了您的钱包地址，以0x开头的一长串数字字母，就是您的钱包地址)。在提现的时候，请注意选择polygon链。过不了多久。您就可以刷新本页，看到从币安转过来的USDT。
+        其他币的操作也很类似。我们建议，您还需要在币安购买少量MATIC币，用同样的方法，提现到您的钱包地址。用来支付各种在polygon链上操作的Gas费。
+        当您的钱包了有了Matic，DAI或者USDT，那么，您就可以将这些币跨链转账到Hayek链，用来买卖域名，购买Hayek币，用于各种hayek链上的应用。<br>
+        <h3>Hayek链上的买家比较少，我如何将我挖出来的hayek币换成人民币？</h3><br>
+         进入币币交易所，将您挖出来的Hayek(HYK)币兑换成USDT或者DAI，然后，跨链转账到Polygon链，再经过Polygon链充值到您的币安账户，卖掉您的USDT，就获得了人民币。目前，币安交易所是全球最大的虚拟币交易所。不管您有多少HYK，都有足够的市场容量让您兑换成人民币。
+        所以，根本不用担心您的HYK有价无市。
+        <h3>如何在Uniswap交易所进行流动性挖矿赚钱？</h3>
+        在哈耶克链上我们部署了一个去中心化的虚拟币兑换虚拟币的Uniswap交易所。在这个交易所，您可以进行任何两种加密货币之间的相互兑换。比如，您可以用HYK币兑换成USDT，您可能会问？当我把我挖矿出来的HYK币卖掉，换成USDT充值到币安交易所卖成人民币了。
+        到底是谁支付了这个人民币？资金来源是哪里？其实，这就是Uniswap去中心化交易所的创新。在Uniswap交易所中，有一种流动性提供者。他们Uniswap的智能合约中按当前HYK与USDT兑换价格的比例，添加两种虚拟币在流动性池中。当有人用USDT兑换HYK，或者用HYK兑换USDT的时候，
+        实际上，您是与这些流动性提供者进行交易，而这个流动性池，则类似一个股份公司，所有的流动性提供者添加流动性的时候，就取得了这个流动性池的股份。用户每次进行兑换的时候，这个流动性池都将收取千分之三的手续费。这是这个流动性池的利润。任何时候，一个流动性提供者都可以按股份比例，提取出对应的虚拟货币。
+        当然，一个交易越频繁的流动性池，所产生的利润越大。给股东带来的回报也越大。这个就是流动性挖矿。如果你要进行流动性挖矿，我们认为，目前，交易最频繁的两个交易对是HYK兑USDT与HYK兑DAI。您首先需要从币安交易所购买USDT或者DAI，提现到您的钱包，跨链转账到hayek链。
+        然后，在uniswap币币交易所中，用一半的USDT或者DAI购买HYK，然后，添加进流动性池。你的工作就做完了。等到什么时候，您想把你的资金退出，只需要按相反流程操作即可。目前，加入流动性的人不太多的情况下，流动性提供者获得的利润将会比较高。一切生意都是如此。等到所有人都参与的时候，您当然不能获得暴利。
+      </div>
+      </div>
+    </div>
+    <hr />
+    <a a href="http://127.0.0.1:8080/ipfs/QmRS3JJnepNte91NPk8ShjuL1VjCoe1t1EC6SFWsmMEhTm/dapp/uniswapv2/">
+   Uniswap币币兑换交易所
+    </a>
+  <hr />
+    <br>
+    <a a href="web3://dotc.web3/">
+      DOTC法币担保交易所
+    </a>
+
+    <button type="button" class="collapsible">如何获得哈耶克币(HYK)</button>
+    <div class="content">
+
+      <table border="0">
+        <tr>
+
+          <td align="left">
+            <text>邀请奖励：近期推出</text>
+          </td>
+        </tr>
+      </table>
+
+      <hr />
+      <table border="0">
+        <tr>
+
+          <td align="left">
+            <text>手机挖矿获得哈耶克币:依次点右下方#号按钮，右上角三点，设定，开启挖矿。(挖矿会消耗手机电力，建议插上电源，关闭省电模式,允许Hayek后台运行。否则会进入休眠而降低挖矿效率)</text>
+          </td>
+        </tr>
+      </table>
+
+      <hr />
+      <table border="0">
+        <tr>
+
+          <td align="left"><text>分享优质视频获得打赏</text></td>
+        </tr>
+      </table>
+    </div>
+    <hr />
+
+    <table border="0">
+      <tr>
+
+        <td width="100%" align="center"> <a href="./web3tube/">WEB3TUBE视频</a></td>
+      </tr>
+    </table>
+    <hr />
+    <table border="0">
+      <tr>
+
+        <td width="100%" align="center"> <a href="web3://bet365.web3/">赌大小游戏</a></td>
+      </tr>
+    </table>
+    <hr/>
+    <table border="0">
+      <tr>
+
+        <td width="100%" align="center"> <a href="web3://dns.web3/">Web3永久域名注册</a></td>
+      </tr>
+    </table>
+    <hr/>
+    <table border="0">
+      <tr>
+
+        <td width="100%" align="center"> <a href="./system/">System Info 系统信息</a></td>
+      </tr>
+    </table>
+  
+    <hr />
+    <table border="0">
+      <tr>
+
+        <td width="100%" align="center"> <a href="web3://jiucai.web3/">免费翻墙软件(招募测试人员)</a></td>
+      </tr>
+    </table>
+  
+    <hr />
+    <table border="0">
+      <tr>
+
+        <td width="100%" align="center"> <a href="web3://xvideos.web3/">成人网站-笑眯眯</a></td>
+      </tr>
+    </table>
+  
+    <hr />
+    
+  </div>
+</body>
+<script src="./web3.min.js"></script>
+<script src="./ethers-5.2.umd.min.js" type="application/javascript"></script>
+<script>
+  if(window._tw_.getVersion()<10002080){
+    alert("当前软件版本过低。请重新下载安装.")
+    window.location.href="http://127.0.0.1:8080/ipns/k51qzi5uqu5dk1vuvvrl4m6285idnfrjo5xj5d1xsf48k63nqfi3eeuqgubr6y/down.html"
+  }
+  // import { ethers } from "./ethers-5.2.esm.min.js";
+  const ERC20ABI = [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "burn",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "burnFrom",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "internalType": "uint8",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "subtractedValue",
+          "type": "uint256"
+        }
+      ],
+      "name": "decreaseAllowance",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "addedValue",
+          "type": "uint256"
+        }
+      ],
+      "name": "increaseAllowance",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "mint",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+  function copyAddress(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.focus({ preventScroll: true })
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      alert("已经将您的钱包地址复制到剪贴板，您可以粘贴到需要的地方")
+    } catch (err) {
+      console.error('Unable to copy to clipboard', err);
+    }
+    document.body.removeChild(textArea);
+  }
+  function transfer(provider, address, amount) {
+
+    const signer = provider.getSigner()
+    const tx = signer.sendTransaction({
+      to: address,
+      value: ethers.utils.parseEther(amount)
+    });
+
+    tx.then((res) => {
+      alert("交易已经提交上链，请等待几十秒种刷新余额。");
+    }, error => {
+      alert('交易失败：' + error);
+    })
+
+  }
+  async function ERC20transfer(provider, raddress, amount, ERC20address,deci) {
+    try {
+
+      const signer = provider.getSigner()
+    
+      const contract = new ethers.Contract(ERC20address, ERC20ABI, provider);
+
+      const daiWithSigner = contract.connect(signer);
+     
+      const daiamount = ethers.utils.parseUnits(amount,deci);
+      alert(daiWithSigner)
+      tx = daiWithSigner.transfer(raddress, daiamount, { gasLimit: 80000 });
+
+      tx.then((res) => {
+        alert("交易已经提交上链，请等待几十秒种刷新余额。");
+      }, error => {
+        alert('交易失败：' + error);
+      })
+    }
+    catch (err) { alert(err) }
+  }
+
+
+  const web3 = new Web3("http://127.0.0.1:8999");
+  web3.eth.isSyncing()
+    .then(sync => {
+
+      if (sync.highestBlock - sync.currentBlock > 1000) {
+        window.location.href = "./syncing.html"
+
+      }
+    }
+
+    );
+
+
+  var hayekprovider
+  var polygonprovider
+  if (typeof window.polygon != 'undefined') {
+
+    polygonprovider = new ethers.providers.Web3Provider(window.polygon);
+
+
+  } else {
+    //   alert(await polygonprovider.getBlockNumber());
+    // provider=  new ethers.providers.WebSocketProvider("ws://192.168.2.20:8546");
+    //provider=  new ethers.providers.WebSocketProvider("ws://192.168.2.71:8998");
+    // provider=  new ethers.providers.JsonRpcProvider("http://192.168.2.71:8999");
+    // polygonprovider = new ethers.providers.JsonRpcProvider("https://polygon-rpc.com");
+    polygonprovider = new ethers.providers.Web3Provider(window.ethereum);
+
+    //provider=  new ethers.providers.WebSocketProvider("ws://192.168.2.154:8998");
+    //provider=  new ethers.providers.WebSocketProvider("ws://127.0.0.1:8998");
+
+  }
+
+  if (typeof window.hayek != 'undefined') {
+    //if (true) {
+
+    hayekprovider = new ethers.providers.Web3Provider(window.hayek)
+
+
+  } else {
+
+    provider = new ethers.providers.JsonRpcProvider("https://rpct.hayek.link");
+
+  }
+
+  if (typeof window.hayek != 'undefined') {
+
+    document.getElementById("download").innerText = ""
+
+  }
+
+  setInterval(function () {
+    document.getElementById("ipfsnodes").innerText = window._tw_.getIPFSnodes() + "/" + window._tw_.getIPFSPublicGateways() + "/" + window._tw_.getIPFSPublicPins()
+  }, 3000);
+  document.getElementById("ipfsnodes").innerText = window._tw_.getIPFSnodes() + "/" + window._tw_.getIPFSPublicGateways() + "/" + window._tw_.getIPFSPublicPins()
+
+
+
+  var account = ""
+  // account= await provider.send("eth_requestAccounts", []);
+  var block = hayekprovider.getBlockNumber()
+  block.then(res => {
+
+    document.getElementById("block").innerText = "当前区块号：" + res
+  }, error => {
+    console.log('失败结果：' + error);
+
+  });
+
+  // const a= provider.getBlockNumber()
+
+
+  hayekprovider.send("eth_requestAccounts", []).then(res => {
+
+    account = res + ""
+    document.getElementById("account").innerText = "" + account
+    const d = hayekprovider.getBalance(res + "")
+    d.then(res => {
+      document.getElementById("balance").innerText = "" + ethers.utils.formatEther(res)
+    }, error => {
+      console.log('失败结果：' + error);
+    });
+
+
+    const dd = polygonprovider.getBalance(res + "")
+
+    const daiAddress = "0x7125ade28ca4d0B876670dD89F952b00B7b4b9F8";
+    const daiAbi = [
+      "function name() view returns (string)",
+      "function symbol() view returns (string)",
+      "function balanceOf(address) view returns (uint)",
+      "function transfer(address to, uint amount)",
+      "event Transfer(address indexed from, address indexed to, uint amount)"
+    ];
+    const daiContract = new ethers.Contract(daiAddress, daiAbi, hayekprovider);
+    daiContract.balanceOf(account).then(res => {
+      document.getElementById("whyk").innerText = "" + ethers.utils.formatUnits(res, 18)
+
+    }, error => {
+      console.log('失败结果：' + error);
+
+    })
+
+    var daiContractwhyk = new ethers.Contract("0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063", daiAbi, polygonprovider);
+    daiContractwhyk.balanceOf(account).then(res => {
+      document.getElementById("DAIpolygon").innerText = "" + ethers.utils.formatUnits(res, 18)
+
+    }, error => {
+      console.log('失败结果：' + error);
+    })
+    var daiContractwhyk = new ethers.Contract("0xc2132D05D31c914a87C6611C10748AEb04B58e8F", daiAbi, polygonprovider);
+    daiContractwhyk.balanceOf(account).then(res => {
+      document.getElementById("USDTpolygon").innerText = "" + ethers.utils.formatUnits(res, 6)
+
+    }, error => {
+      console.log('失败结果：' + error);
+    })
+
+    var daiContractwhyk = new ethers.Contract("0x9fe0B38F1FC6e96f3F403B05A347C66f7a198357", daiAbi, hayekprovider);
+    daiContractwhyk.balanceOf(account).then(res => {
+      document.getElementById("matichayek").innerText = "" + ethers.utils.formatUnits(res, 18)
+
+    }, error => {
+      console.log('失败结果：' + error);
+    })
+
+    var daiContractwhyk = new ethers.Contract("0x81b9aae4ac06040F8b8E140153530F09023A5e2E", daiAbi, hayekprovider);
+    daiContractwhyk.balanceOf(account).then(res => {
+      document.getElementById("daihayek").innerText = "" + ethers.utils.formatUnits(res, 18)
+
+    }, error => {
+      console.log('失败结果：' + error);
+    })
+    var daiContractwhyk = new ethers.Contract("0x31F0929be289073B60F0c4248303EdcE6a7E278B", daiAbi, hayekprovider);
+    daiContractwhyk.balanceOf(account).then(res => {
+      document.getElementById("usdthayek").innerText = "" + ethers.utils.formatUnits(res, 6)
+
+    }, error => {
+      console.log('失败结果：' + error);
+    })
+
+
+
+  }, error => {
+
+    document.getElementById("account").innerText = "获取钱包地址失败，您应该在Hayek中使用"
+
+  })
+
+  //------------
+
+  polygonprovider.send("eth_requestAccounts", []).then(res => {
+    // alert("dd");
+    account = res + ""
+    document.getElementById("account").innerText = "" + account
+    const d = polygonprovider.getBalance(res + "")
+    d.then(res => {
+
+      document.getElementById("maticbalance").innerText = "" + ethers.utils.formatEther(res)
+    }, error => {
+      console.log('失败结果：' + error);
+
+    });
+    const daiAddress = "0xa5E265Bf313b24476dA9681D61bDbdC03c66F271";
+    const daiAbi = [
+      "function name() view returns (string)",
+      "function symbol() view returns (string)",
+      "function balanceOf(address) view returns (uint)",
+      "function transfer(address to, uint amount)",
+      "event Transfer(address indexed from, address indexed to, uint amount)"
+    ];
+    const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
+    daiContract.balanceOf(account).then(res => {
+      document.getElementById("usdt").innerText = "" + ethers.utils.formatUnits(res, 8)
+
+    }, error => {
+      console.log('失败结果：' + error);
+
+    })
+
+    var daiContractwhyk = new ethers.Contract("0xf3DD11F7d8fA791c2Da46a5D26634592E417Af6C", daiAbi, provider);
+    daiContractwhyk.balanceOf(account).then(res => {
+      document.getElementById("whyk").innerText = "" + ethers.utils.formatUnits(res, 18)
+
+    }, error => {
+      console.log('失败结果：' + error);
+
+    })
+
+
+
+  }, error => {
+    document.getElementById("account").innerText = "获取钱包地址失败，您应该在Hayek中使用"
+
+  })
+  //document.getElementById("t1").innerText="ttt"
+
+  //console.log("ddd"+a)
+
+
+
+
+
+  const daiAbi1 =
+    [
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "likeText",
+            "type": "string"
+          }
+        ],
+        "name": "like",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "payable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "ipfs",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "title",
+            "type": "string"
+          }
+        ],
+        "name": "publicVideo",
+        "outputs": [
+          {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "allVideo",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "publicdatetime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "publicAddr",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "ipfs",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "income",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "balance",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "bbs",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "poster",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "content",
+            "type": "string"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "getVideoCount",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "myVideo",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "endLineNumber",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "MaxLines",
+            "type": "uint256"
+          }
+        ],
+        "name": "queryNewVideo",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "publicdatetime",
+                "type": "uint256"
+              },
+              {
+                "internalType": "address",
+                "name": "publicAddr",
+                "type": "address"
+              },
+              {
+                "internalType": "string",
+                "name": "ipfs",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "internalType": "uint256",
+                "name": "income",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct NewVideo.Video[]",
+            "name": "r",
+            "type": "tuple[]"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      }
+    ];
+
+  const daiAddress1 = "0x7d1C275BfE0A597e11af0e2F9ECCAE73e9e0D9fE";
+  //   const daiAddress1="0x61F683Bd8A9fA643Cc35e03716aD3f03797176F3";
+  const daiContract1 = new ethers.Contract(daiAddress1, daiAbi1, provider);
+  var s = 0
+  window.anybusy = false;
+  function refresh() {
+    if (window.anybusy) {
+      console.log("------" + window.anybusy)
+      return
+    }
+    window.anybusy = true
+    const myNode = document.getElementById("videos");
+    while (myNode.firstChild) {
+      myNode.removeChild(myNode.lastChild);
+    }
+    console.log("begin refresh:" + s)
+    daiContract1.getVideoCount().then(count => {
+
+
+      daiContract1.queryNewVideo(s, 10).then(res => {
+        res.forEach(element => {
+          console.log(element)
+          AppendVideo(element.ipfs, element.id, element.title, element.publicAddr, element.publicdatetime, element.income)
+          // lastvideoid = element.id
+
+          s = element.id - 1
+          if (element.id < 20) { s = 20 }
+        });
+        window.anybusy = false
+      }, error => {
+        window.anybusy = false
+        // document.getElementById("video").innerText = error
+
+
+        // alert(error)
+      })
+
+    }, error => {
+      window.anybusy = false
+      // document.getElementById("video").innerText=error
+
+    })
+  }
+  if (typeof window.ethereum != 'undefined') {
+
+    document.getElementById("download").innerText = ""
+
+  }
+
+  refresh()
+  function getDu(ee) {
+    // alert(parseInt(e.duration/60))
+    //alert(ee.src+" "+ee.toSource())
+    //alert(JSON.stringify(ee, null, 4));
+    alert(ee.duration);
+  }
+
+  function AppendVideo(ipfs, id, title, address, posttime, income) {
+    var date = new Date(posttime * 1000);
+    const vfull = document.createElement("a")
+    // vfull.setAttribute("width", "50%");
+    vfull.setAttribute("href", "./v/?ipfs=" + ipfs + "?title=" + title + "?id=" + id)
+    const p = document.createElement("video")
+    p.currentTime = 0.01;
+    p.src = ipfs;
+
+    //p.src =  ipfs;
+    //p.id = "video" + id;
+
+    //p.setAttribute("controls", "{false}");
+    //p.setAttribute("onloadeddata", "canplay(this)");
+    // p.setAttribute("onloadeddata", "canplay(this)");
+
+    //p.preload="{metadata}";
+    //p.setAttribute("proload", "metadata");
+    //  p.addEventListener("loadedmetadata",getDu(p))
+    //p.addEventListener("durationchange",getDu(p))
+    //p.oncanplay="{getDu(this)}"
+    // p.width="100%";
+    p.setAttribute("width", "100%");
+    //p.autopictureinpicture = "{true}";
+    vfull.appendChild(p)
+    //  vfull.setAttribute("width", "50%");
+    document.getElementById("videos").appendChild(vfull);
+
+    const p1 = document.createElement("h10")
+    p1.innerText = title + " \n发布者地址：" + address.toString().substring(0, 10) + "..." + address.toString().substring(30) + " \n发布时间：" + date.toDateString() + "\n 打赏收入:" + income + "HYK";
+    document.getElementById("videos").appendChild(p1);
+    document.getElementById("videos").appendChild(document.createElement("hr"))
+    document.body.removeChild
+  }
+
+
+  window.onscroll = () => {
+    // 变量scrollTop 是滚动条滚动时距离顶部的距离
+    var scrollTop = document.documentElement.scollTop || document.body.scrollTop;
+    // 变量windowHeight 是可视区的高度
+    var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+    // 变量scrollHeight 是滚动条的总高度
+    var scrollHeight = document.documentElement.scrollHeight;
+    // 滚动条到底部的条件
+
+    var sTop = document.body.scrollTop + document.documentElement.scrollTop;
+    //  console.log("will refresh"+windowHeight+"scrollHeight "+(scrollHeight-sTop-windowHeight))
+    if ((scrollHeight - sTop - windowHeight) < 5) {
+
+      refresh()
+    }
+
+  }
+  setInterval(function () {
+
+    document.getElementById("ipfsnodes").innerText = window._tw_.getIPFSnodes() + "/" + window._tw_.getIPFSPublicGateways() + "/" + window._tw_.getIPFSPublicPins()
+  }, 3000);
+  document.getElementById("ipfsnodes").innerText = window._tw_.getIPFSnodes() + "/" + window._tw_.getIPFSPublicGateways() + "/" + window._tw_.getIPFSPublicPins()
+
+
+  function canplay(obj) {
+    //document.getElementById("video1").currentTime=0;
+    obj.currentTime = 0.01
+    //   alert(obj.duration)
+    //   document.getElementById("t1").innerText="ttt"
+  }
+  function uploadipfs() {
+
+
+    provider.send("get_ipfs", "fff").then(res => {
+
+      console.log("get_ipfs:re" + res)
+
+    }, error => {
+
+      alert("get_ipfs:" + error)
+    }, onprogress => {
+
+    })
+  }
+</script>
+
+<script>
+
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function () {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.display === "block") {
+        content.style.display = "none";
+      } else {
+        content.style.display = "block";
+      }
+    });
+  }
+</script>
+
+</html>

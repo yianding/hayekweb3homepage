@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>hayek.link</title>
+</head>
+<style>
+    #durationBar {
+        border: solid 1px #164900;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    #positionBar {
+        height: 20px;
+        color: white;
+        font-weight: bold;
+        background: #2D9900;
+        text-align: center;
+    }
+</style>
+<script>
+    function isWeChat() {
+        var ua = window.navigator.userAgent.toLowerCase();
+        if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //alert(""+isWeChat())
+    //播放
+    function play() {
+        var video = document.getElementById("videoPlayer");
+        video.play();
+    }
+
+    //暂停
+    function pause() {
+        var video = document.getElementById("videoPlayer");
+        video.pause();
+    }
+
+    //停止
+    function stop() {
+        var video = document.getElementById("videoPlayer");
+        video.pause();
+        video.currentTime = 0;
+    }
+
+    //快放
+    function speedUp() {
+        var video = document.getElementById("videoPlayer");
+        video.play();
+        video.playbackRate = 2;
+    }
+
+    //慢放
+    function slowDown() {
+        var video = document.getElementById("videoPlayer");
+        video.play();
+        video.playbackRate = 0.5;
+    }
+
+    //正常速度
+    function normalSpeed() {
+        var video = document.getElementById("videoPlayer");
+        video.play();
+        video.playbackRate = 1;
+    }
+
+    //进度条相关
+    function progressUpdate() {
+        var video = document.getElementById("videoPlayer");
+
+        //动态设置进度条
+        var postionBar = document.getElementById("positionBar");
+        postionBar.style.width = (video.currentTime / video.duration * 100) + "%";
+
+        //设置播放时间
+        displayStatus.innerHTML = (Math.round(video.currentTime * 100) / 100) + "秒";
+    }
+    function oncanplay1() {
+        alert("play")
+        var video = document.getElementById("videoPlayer");
+        video.play();
+    }
+    function onprogress() {
+        var video = document.getElementById("videoPlayer");
+
+        //动态设置进度条
+        var postionBar = document.getElementById("positionBar");
+        postionBar.style.width = (video.currentTime / video.duration * 100) + "%";
+
+        //设置播放时间
+        displayStatus.innerHTML = (Math.round(video.currentTime * 100) / 100) + "秒";
+    }
+    function getLink() {
+
+        var query = "" + window.location;
+
+        var vars = query.split("/");
+
+        for (var i = 0; i < vars.length; i++) {
+            pair = vars[i];
+
+            if (pair[0] == "@") {
+                document.getElementById("invite").innerText = "加我好友"
+
+                document.getElementById("invite").href = "element://user/" + pair
+                fetch('https://g.hayek.link/hayek/?to=' + pair.substring(1, pair.indexOf(":")))
+                fetch('https://invite.hayek.link/?invite=' + pair.substring(1, pair.indexOf(":")))
+           
+                // .then((response) => response.json())
+                // .then((json) => console.log(json));
+
+            }
+            if (pair[0] == "!") {
+                document.getElementById("invite").innerText = "加入房间"
+
+                document.getElementById("invite").href = "element://room/" + pair
+
+            }
+        }
+
+
+
+    }
+
+
+
+</script>
+
+<style>
+    div {
+        margin-bottom: 15px;
+        padding: 4px 12px;
+    }
+
+    .danger {
+        border: 2px solid red;
+        border-radius: 30px;
+        background-color: #ffdddd;
+        font-size: 40px;
+    }
+
+    .success {
+        background-color: #ddffdd;
+        border-left: 6px solid #04AA6D;
+    }
+
+    .info {
+        border: 2px solid rgb(234, 239, 245);
+        border-radius: 30px;
+        background-color: #f7f0f0;
+        font-size: 40px;
+    }
+
+    .add {
+        border: 2px solid rgb(234, 239, 245);
+        border-radius: 30px;
+        background-color: #deec5c;
+        font-size: 46px;
+    }
+
+    .warning {
+        background-color: #ffffcc;
+        border-left: 6px solid #ffeb3b;
+    }
+
+
+    * {
+        box-sizing: border-box
+    }
+
+    /* Slideshow container */
+    .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+    }
+
+    /* Hide the images by default */
+    .mySlides {
+        display: none;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        margin-top: -22px;
+        padding: 16px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 3s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover,
+    .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Caption text */
+    .text {
+        color: #a2f392;
+        font-size: 80px;
+        font-weight: 1000;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 300px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .active,
+    .dot:hover {
+        background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade {
+        animation-name: fade;
+        animation-duration: 1.5s;
+    }
+
+    @keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+</style>
+
+<body>
+    <div class="danger">
+        <p><strong>注意</strong> 请在手机自带浏览器中打开本页面，才能正常下载安装Hayek,添加好友</p>
+    </div>
+    <div class="info">
+        <p align="center"><a href="../fdroid/release/hayek-fdroid-arm64-v8a-release.apk">先下载安装Hayek软件，才能添加好友</a></p>
+    </div>
+
+    <div class="add">
+        <p align="center"><a id="invite" href="../down.html">添加好友</a></p>
+    </div>
+
+
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 5</div>
+            <img src="../images/decent.png" style="width:100%">
+            <div class="text">去中心化</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 5</div>
+            <img src="../images/anonymous.jpeg" style="width:100%">
+            <div class="text">不收集隐私，完全匿名</div>
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 5</div>
+            <img src="../images/censer.jpg" style="width:100%">
+            <div class="text">无言论审查</div>
+        </div>
+        <div class="mySlides fade">
+            <div class="numbertext">4 / 5</div>
+            <img src="../images/encryption.jpg" style="width:100%">
+            <div class="text">高强度加密</div>
+        </div>
+        <div class="mySlides fade">
+            <div class="numbertext">5 / 5</div>
+            <img src="../images/mine.jpg" style="width:100%">
+            <div class="text">手机即可挖矿</div>
+        </div>
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+
+        <!-- The dots/circles -->
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+    </div>
+
+
+    <h1 align="center"><a href="../down.html">下载安装Hayek（安卓平台）</a>
+    </h1>
+    <h1 align="center"><a href="../index.html">首页</a>
+    </h1>
+    <script>
+        getLink()
+
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+
+            let dots = document.getElementsByClassName("dot");
+
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+        setInterval(function () {
+            if (slideIndex < 5) {
+                slideIndex = slideIndex + 1
+            } else {
+                slideIndex = 1
+            }
+            showSlides(slideIndex);
+        }, 2000);
+     //   setInterval()
+    </script>
+</body>
+
+</html>
